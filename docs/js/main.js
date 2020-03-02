@@ -36,67 +36,35 @@ class Cursor {
         this.startBlinking();
     }
 }
-let charPause = { from: 50, to: 150 };
-let enterPause = { from: 4000, to: 8000 };
-let removePause = { from: 1000, to: 4000 };
-const startTyping = ({ textId, cursorId, text = "", repetitionNumber = Infinity }) => __awaiter(this, void 0, void 0, function* () {
+let charPause = { from: 20, to: 100 };
+let enterPause = { from: 1000, to: 2000 };
+const startTyping = ({ textId, cursorId, texts, repetitionNumber = Infinity }) => __awaiter(this, void 0, void 0, function* () {
     let element = document.getElementById(textId);
-    let remainingChars = text.split(''); //.reverse();
+    let remainingChars = "Here's some fact about Dani's manager or Zsófi as some of you know her. ".split('');
     let cursor = new Cursor(cursorId);
     let enterText = () => {
         return new Promise((resolver) => __awaiter(this, void 0, void 0, function* () {
             while (remainingChars.length) {
                 yield enterChar(remainingChars.splice(0, 1)[0]);
             }
-            setTimeout(resolver.bind(this), getRandomWaitTime(enterPause));
+            setTimeout(resolver.bind(this), getRandom(enterPause));
         }));
     };
     let enterChar = (char) => {
         return new Promise(resolver => {
             element.innerText += char;
-            setTimeout(resolver.bind(this), getRandomWaitTime(charPause));
+            setTimeout(resolver.bind(this), getRandom(charPause));
             cursor.hasMovedHook();
         });
     };
-    let removeText = () => {
-        return new Promise((resolver) => __awaiter(this, void 0, void 0, function* () {
-            if (element.innerText.length) {
-                yield removeChar(400);
-            }
-            while (element.innerText.length) {
-                yield removeChar(40);
-            }
-            remainingChars.reverse();
-            setTimeout(resolver.bind(this), getRandomWaitTime(removePause));
-        }));
-    };
-    let removeChar = (waitTime = getRandomWaitTime(charPause)) => {
-        return new Promise(resolver => {
-            let innerText = element.innerText;
-            let length = innerText.length;
-            remainingChars.push(innerText.substring(length - 1, length));
-            element.innerText = element.innerText.substring(0, length - 1);
-            setTimeout(resolver.bind(this), waitTime);
-            cursor.hasMovedHook();
-        });
-    };
-    yield enterText();
     while (repetitionNumber--) {
-        yield removeText();
         yield enterText();
+        remainingChars = texts[getRandom({ from: 0, to: texts.length - 1 })].split('');
     }
 });
-let getRandomWaitTime = (interval) => {
-    return Math.random() * (interval.to - interval.from) + interval.from;
+let getRandom = (interval) => {
+    return Math.floor(Math.random() * (interval.to - interval.from) + interval.from);
 };
-startTyping({ textId: "dev_text", cursorId: "dev_cursor", text: " a Developer." });
-startTyping({ textId: "dev_text_2", cursorId: "dev_cursor_2" });
-generic.luck
-    / give;
-halasiBenedek;
-diamond_axe;
-{
-    Unbreakable: 1, AttributeModifiers;
-    [{ Slot: "mainhand", AttributeName: "generic.attackDamage", Name: "generic.attackDamage", Amount: 100, Operation: 1 }, { Slot: "mainhand", AttributeName: "generic.luck", Name: "generic.luck", Amount: 1000, Operation: 0 }];
-}
-1;
+let texts = ["Dani's manager's name is Zsófi. Not Zsófia, this's important! ", "Henceforth she's Sanyi's girlfriend too and still Zsófi. ", "Important to notice that her name is nothing else than Zsófi. ", "We should also mention that her name 'Zsófi' is not to be mixed up with 'Szófi' as these two names are completly different. "];
+console.log(texts);
+startTyping({ textId: "text", cursorId: "cursor", texts: texts });
