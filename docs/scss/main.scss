@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono&display=swap");
+
+$font-family-sans-serif: "Roboto";
+$font-family-monospace: "Roboto Mono";
+
+$theme-colors: (
+  "primary": #e3f2fd,
+  "primary-light": #f5f9fc,
+  "primary-dark": #b1bfca,
+  "secondary": #81c784,
+  "secondary-light": #b2fab4,
+  "secondary-dark": #519657
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+html,
+body {
+  @extend .h-100;
+}
