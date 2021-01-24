@@ -1,3 +1,6 @@
+# project
+*.map
+
 # Logs
 logs
 *.log

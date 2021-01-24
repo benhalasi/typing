@@ -1,0 +1,94 @@
+
+@import url("https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono&display=swap");
+
+$font-family-sans-serif: "Roboto Mono";
+$font-family-monospace: "Roboto Mono";
+
+$theme-colors: (
+  //"my-cool-custom-color": #bb44ff,
+);
+
+$sizes: (
+    33: 33%,
+    66: 66%
+);
+
+/*
+ *  you can customize bootstrap before this import.
+ *  take a look at:  "node_modules/bootstrap/scss/_variables.scss"
+*/
+// @import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/bootstrap-reboot.scss";
+
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-flow: column nowrap;
+  // background-color: black;
+}
+
+.terminal-buffer {
+  flex: 0 0 auto;
+  overflow: auto;
+
+  &--io {
+    width: 100%;
+    overflow: hidden;
+
+    padding: 0;
+    border: none;
+    resize: none;
+    word-break: break-all;
+  }
+}
+
+.terminal-input {
+  flex: 0 1 1rem;
+  display: flex;
+
+  &--element {
+    border: none;
+    width: 0;
+    max-width: calc(100vw - 27ch);
+    padding: 0;
+    caret-color: transparent;
+    resize: none;
+  }
+
+  &--styled {
+    max-width: 100vw;
+  
+    &--before {
+    }
+  
+    &::after {
+    }
+
+    &:focus-within::after {
+      content: '█';
+      animation-duration: 900ms;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-timing-function: cubic-bezier(1, -.5, 0, 1.5);
+      animation-name: blink;
+      
+      @keyframes blink {
+        from {
+          opacity: 1;
+        }
+      
+        to {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}
