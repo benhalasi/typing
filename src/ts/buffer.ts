@@ -1,5 +1,5 @@
 let tb = document.querySelector('.terminal-buffer') as HTMLElement
-let ta = document.querySelector('.terminal-buffer--io') as HTMLTextAreaElement
+let ta = document.querySelector('.terminal-buffer--content') as HTMLElement
 
 let getWidth = (width: string = '1ch') :number => {
   let el = document.createElement('div')
@@ -11,11 +11,10 @@ let getWidth = (width: string = '1ch') :number => {
 }
 
 let fit = () => {
-  tb.style.maxHeight = getWidth('100vh') - parseFloat(window.getComputedStyle(tb).lineHeight) + 'px'
-  ta.cols = Math.floor(getWidth('100vw') / getWidth('1ch'))
+  // tb.style.maxHeight = getWidth('100vh') - parseFloat(window.getComputedStyle(tb).lineHeight) + 'px'
 
-  var str = ta.value
-  var cols = ta.cols
+  var str = ta.innerHTML
+  var cols = Math.floor(getWidth('100vw') / getWidth('1ch'))
 
   var linecount = 0;
   str.split('\n').forEach((l) => {
@@ -26,8 +25,7 @@ let fit = () => {
   linecount--
   
   // console.log(linecount, parseFloat(window.getComputedStyle(ta).lineHeight) * linecount + 'px')
-  ta.style.height = parseFloat(window.getComputedStyle(ta).lineHeight) * linecount + 'px'
-  ta.rows = linecount
+  // ta.style.height = parseFloat(window.getComputedStyle(ta).lineHeight) * linecount + 'px'
 
   if(tb.scrollHeight - parseFloat(window.getComputedStyle(tb).lineHeight) <= tb.scrollTop + parseFloat(window.getComputedStyle(tb).height))
     tb.scrollTop = tb.scrollHeight;    
@@ -36,17 +34,17 @@ let fit = () => {
 ta.addEventListener('input', fit)
 
 export function println (input: string = '') {
-  ta.value += ''
-  + input + '\n'
+  ta.innerHTML += ''
+  + input + '<br/>'
   ta.dispatchEvent(new InputEvent('input'))
 }
 
 export function clear () {
-  ta.value = ''
+  ta.innerHTML = ''
   println(welcome)
 }
 
-const welcome = "Hello... etc etc\nversion=v-0.1.3\n" + new Date()
+const welcome = "Hello... etc etc<br/>version=v-0.1.3<br/>" + new Date()
 println(welcome)
 
 tb.scrollTop = tb.scrollHeight;

@@ -360,6 +360,35 @@ body {
   display: flex;
   flex-flow: column nowrap; }
 
+.terminal {
+  position: relative;
+  max-height: 100vh; }
+  .terminal-buffer {
+    max-height: inherit; }
+    .terminal-buffer--content {
+      max-height: inherit;
+      word-break: break-word;
+      white-space: normal; }
+      .terminal-buffer--content::after {
+        content: "\a";
+        white-space: pre; }
+  .terminal-interface {
+    position: absolute;
+    bottom: 0;
+    background-color: white;
+    display: inline-flex;
+    width: 100%; }
+    .terminal-interface--prefix {
+      flex: 0 0 auto; }
+    .terminal-interface--input {
+      flex: 1 1 100%;
+      width: 100%;
+      border: none;
+      padding: 0;
+      caret-color: transparent; }
+    .terminal-interface:focus-within {
+      outline: solid 1px #b4b4b4; }
+
 .terminal-buffer {
   flex: 0 0 auto;
   overflow: auto; }

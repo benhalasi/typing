@@ -13,21 +13,25 @@
 
 <body class="">
 
-  <section class="terminal-buffer">
+  <!-- <div style="color:red; background: yellow; height: 100vh;">hi</div> -->
+
+  <section class="terminal">
+    <div class="terminal-buffer">
+      <div class="terminal-buffer--content">
+      </div>
+      <div class="terminal-interface">
+        <span class="terminal-interface--prefix">guest@benedek.dev says ➜&nbsp;</span><input class="terminal-interface--input" autofocus>
+      </div>
+    </div>
+  </section>
+
+  <!-- <section class="terminal-buffer">
     <textarea readonly class="terminal-buffer--io"></textarea>
   </section>
   <section class="terminal-input">
-    <span class="terminal-input--before">guest@benedek.dev says ➜&nbsp;</span>
-    <span class="terminal-input--styled"><input class="terminal-input--element" autofocus></span>
-  </section>
+    <span class="terminal-input--before">guest@benedek.dev says ➜&nbsp;</span><input class="terminal-interface--input" autofocus>
+  </section> -->
 
   <script src="js/bundle.js"></script>
-
-  <!-- You can use CDN to import bootstrap and its dependencies -->
-  <!--
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  -->
 </body>
 </html>

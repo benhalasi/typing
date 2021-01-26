@@ -1,9 +1,12 @@
 import { println } from './buffer';
 
-let ti = document.querySelector('.terminal-input') as HTMLElement
-let tis = document.querySelector('.terminal-input--styled') as HTMLElement
-let tieb = document.querySelector('.terminal-input--before') as HTMLElement
-let tie = document.querySelector('.terminal-input--element') as HTMLInputElement
+let ti = document.querySelector('.terminal-interface') as HTMLElement
+let tieb = document.querySelector('.terminal-interface--prefix') as HTMLElement
+let tie = document.querySelector('.terminal-interface--input') as HTMLInputElement
+
+console.log({
+  ti, tieb, tie
+})
 
 document.getElementsByTagName('body')[0].addEventListener('click', (event) => {
   tie.focus()
@@ -15,7 +18,7 @@ ti.addEventListener('focusout', (event) => {
 
 tie.addEventListener('input', (event) => {
   // console.log(tie.value.length, 'ch')
-  tie.style.width = tie.value.length + 'ch';
+  // tie.style.width = tie.value.length + 'ch';
 })
 
 tie.addEventListener('keypress', (event) => {

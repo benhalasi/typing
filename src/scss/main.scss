@@ -35,6 +35,51 @@ body {
   // background-color: black;
 }
 
+.terminal { 
+  position: relative;
+  max-height: 100vh;
+
+  &-buffer {
+    max-height: inherit;
+
+    &--content {
+      max-height: inherit;
+      word-break: break-word; // break-all, break-word
+      white-space: normal;    // normal, no-wrap
+
+      &::after {
+        content: "\a";
+        white-space: pre;
+      }
+    }
+  }
+
+  &-interface {
+    position: absolute;
+    bottom: 0;
+
+    background-color: white;
+
+    display: inline-flex;
+    width: 100%;
+    &--prefix {
+      flex: 0 0 auto;
+    }
+
+    &--input {
+      flex: 1 1 100%;
+      width: 100%;
+      border: none;
+      padding: 0;
+      caret-color: transparent;
+    }
+
+    &:focus-within {
+      outline: solid 1px rgb(180, 180, 180);
+    }
+  }
+}
+
 .terminal-buffer {
   flex: 0 0 auto;
   overflow: auto;
